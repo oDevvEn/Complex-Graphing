@@ -1,13 +1,17 @@
 #include "main.hpp"
 
 int main() {
-    Grapher grapher;
-
     // init renderer
-    int initResult = grapher.Init();
-    if (initResult != 0) {
-        return initResult;
-    }
+    Grapher grapher;
+    grapher.InitWindow();
+    grapher.InitStuff();
+
+    // rtx on
+    grapher.GenerateShaders();
+
+    // the rtx data
+    grapher.UpdateSize(grapher.drawingPoints);
+    grapher.Compute();
 
     // yay infinite loop
     grapher.Loop();
